@@ -1,0 +1,15 @@
+# Data, downloaded and saved
+data/
+
+# Keys and R files
+.Renviron
+.Rhistory
+.RData
+.Rproj.user/
+
+# Large files
+*.tif
+*.zip
+
+# System files
+.DS_Store
