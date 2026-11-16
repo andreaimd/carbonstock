@@ -6,11 +6,13 @@ The following scripts present examples of how to use a selection of functions fr
 
 | Script | What it shows |
 |---|---|
-| `0_gfw_key.R` | Creates your Global Forest Watch key with `httr`. You only need it for `2_biomass.R`. |
+| `0_gfw_key.R` | Creates the Global Forest Watch key with `httr`. Only needed for `2_biomass.R`. |
 | `1_grid.R` | Builds a 1 km grid for San Martín with `st_make_grid` and clips it to the boundary. |
-| `2_biomass.R` | Downloads aboveground biomass tiles and summarizes them for each cell with `exact_extract`. It gets the mean, median, min, max and standard deviation, the total per cell, and the carbon and CO2 stock. It also gives the share of low, medium and high biomass per cell. |
+| `2_biomass.R` | Downloads aboveground biomass tiles and summarizes them for each cell with `exact_extract`. It gets the mean, median, min, max and standard deviation, the total per cell, and the carbon and CO2 stock. It also gives the share of low, medium and high biomass per cell. It also draws a map of the mean CO2 per cell with `ggplot2`. |
 
-Run `1_grid.R` first. It saves the grid, and `2_biomass.R` reads it. This keeps the cell ids the same in the results, so you can join them by `id`.
+Run `1_grid.R` first. It saves the grid, and `2_biomass.R` reads it. This keeps the cell ids the same in the results.
+
+![Mean biomass per cell in San Martín](graphs/biomass_map.png)
 
 ## Functions covered
 
@@ -82,7 +84,7 @@ Additional details:
 
 `2_biomass.R` needs a free API key from Global Forest Watch. The script `0_gfw_key.R` makes it, following the guide of the Global Forest Watch Data API.
 
-1. Run section 1 of `0_gfw_key.R` once. It signs you up with a name and email.
+1. Run section 1 of `0_gfw_key.R` once. It signs up with a name and email.
 2. Open the email, which may be in the spam folder, and set a password with the link. If the sign up is on the website instead, at https://www.globalforestwatch.org/my-gfw/, use the Sign up link. Do not log in with Google or Facebook, because then a password cannot be set.
 3. Run section 2. It asks for the email and password, gets a token, and prints a key. The value called `api_key` is the key.
 4. Add the key to `.Renviron` file as `GFW_KEY=your_key_here`. Section 2 opens the file. Then restart R and check it with `Sys.getenv("GFW_KEY")`.
@@ -116,4 +118,4 @@ Pebesma, E., & Bivand, R. (2023). *Spatial data science: With applications in R*
 
 ## Folders
 
-The scripts create their folders. Downloaded and saved data go in `data/` and are not uploaded to GitHub.
+The scripts create their folders. Downloaded and saved data go in `data/` and are not uploaded to GitHub. The map goes in `graphs/`, which is uploaded, so the image in this README shows.
